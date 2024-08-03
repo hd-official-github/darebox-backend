@@ -1,13 +1,10 @@
 import Navbar from '@/components/Navbar'
-import { PrismaClient } from '@prisma/client'
+
 import Link from 'next/link'
 import React from 'react'
-const prisma = new PrismaClient()
+import { getcreativits } from '../actions/ui/getCreativitis'
 
-async function getcreativits() {
-  const creas = await prisma.creativity.findMany();
-  return creas;
-}
+
 
 export default async function Creativity() {
   const creas = await getcreativits()
