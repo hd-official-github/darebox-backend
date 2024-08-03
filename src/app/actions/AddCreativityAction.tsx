@@ -2,6 +2,7 @@
 
 import { CreativitySchema } from "@/zodSchema/creativitySchema";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 type CreaResponse = { success: boolean, msg?: string, redirectUrl: string }
 export async function AddCreativityAction(data: FormData): Promise<CreaResponse> {
@@ -24,9 +25,10 @@ export async function AddCreativityAction(data: FormData): Promise<CreaResponse>
                 url: d.url
             },
         });
+        revalidatePath('/creativity')
         return { success: true, redirectUrl: '/creativity' }
         // Reset error on successful submission
-
+        
     } catch (error: any) {
         // Handle error and set it to state
 
