@@ -2,10 +2,15 @@ import Navbar from '@/components/Navbar'
 import { PrismaClient } from '@prisma/client'
 import Link from 'next/link'
 import React from 'react'
+const prisma = new PrismaClient()
+
+async function getcreativits() {
+  const creas = await prisma.creativity.findMany();
+  return creas;
+}
 
 export default async function Creativity() {
-  const prisma = new PrismaClient()
-  const creas = await prisma.creativity.findMany()
+  const creas = await getcreativits()
   return (
     <Navbar>
       <div className='flex flex-row items-center justify-between p-4'>
