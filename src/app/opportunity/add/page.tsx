@@ -1,0 +1,48 @@
+"use client"
+import { AddCreativityAction } from '@/app/actions/AddCreativityAction';
+import { AddOpportunityAction } from '@/app/actions/AddOpportunityAction';
+import Navbar from '@/components/Navbar'
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react'
+
+export default function OppAdd() {
+    const [error, setError] = useState<{ msg: string | undefined } | null>(null);
+
+    const router = useRouter()
+    async function handleSubmit(data: FormData) {
+
+        const name = data.get('title') as string
+        const author = data.get('description') as string
+        if (!name || !author) {
+            setError({ msg: "Invalid form Fields" })
+            return
+        }
+        console.log('here');
+        
+        const response = await AddOpportunityAction(data)
+        if (!response.success) {
+            setError({ msg: response.msg })
+            return
+        }
+        else router.replace(response.redirectUrl)
+    }
+    return (
+        <Navbar>
+            <div className='font-black text-md p-4'>
+                <h3>Add Opportunity</h3>
+            </div>
+            <form action={handleSubmit} className='flex flex-col gap-y-4 max-w-[50%] m-4 font-bold'>
+                <div className='flex flex-col'>
+                    <label>Title</label>
+                    <input type='text' placeholder='Title' className='p-2 border border-primary' name='title' />
+                </div>
+                <div className='flex flex-col'>
+                    <label>Description</label>
+                    <input type='text' placeholder='Description' className='p-2 border border-primary' name='description' />
+                </div>
+
+                <button type='submit' className='font-black text-white p-4 rounded-md bg-primary'>SUBMIT</button>
+            </form>
+        </Navbar >
+    )
+}

@@ -13,6 +13,8 @@ const reqZodSchema = z.object({
     phone: z.string().min(1),
     grade: z.string().min(1),
     password: z.string().min(1),
+    city: z.string().min(1),
+    refercode: z.string().optional(),
 })
 export async function POST(req: Request) {
     try {
@@ -56,23 +58,19 @@ export async function POST(req: Request) {
                 phone: d.phone,
                 grade: d.grade,
                 role: role,
+                city: d.city,
+                refercode: d.refercode,
                 password: hashedPassword,
             },
         });
         const iat = Math.floor(Date.now() / 1000); // Issued at
         const exp = iat + 60 * 60; // Expiration time (1 hour)
 
-        const token = await new SignJWT({ id: newUser.id, username: newUser.email, role: newUser.role })
+        const token = await new SignJWT({ uid: newUser.id, role: newUser.role })
             .setProtectedHeader({ alg: 'HS256' })
             .setIssuedAt(iat)
             .setExpirationTime(exp)
             .sign(new TextEncoder().encode(JWT_SECRET));
-        // Generate a JWT token
-        // const token = jwt.sign(
-        //     { id: newUser.id, username: newUser.email, role: newUser.role },
-        //     JWT_SECRET,
-        //     { expiresIn: '1h' }
-        // );
         return NextResponse.json({ token }, { status: 200 });
 
     } catch (error) {

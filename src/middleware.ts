@@ -1,7 +1,7 @@
 //this is a config file. NextJS standard
 export { middleware as default } from '@/app/middlewares/apiMiddleware';
 export const config = {
-  matcher: '/api/v1/getcreativity',
+  matcher: ['/api/v1/getcreativity','/api/v1/getopportunity','/api/v1/getproductivity'],
 };
 
 // import { NextResponse } from 'next/server'

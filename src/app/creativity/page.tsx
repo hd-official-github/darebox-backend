@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar'
 
 import Link from 'next/link'
 import React from 'react'
-import { getcreativits } from '../actions/ui/getCreativitis'
+import { getcreativits } from '../actions/ui/fetchactions'
 
 
 

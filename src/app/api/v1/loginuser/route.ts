@@ -43,20 +43,11 @@ export async function POST(req: NextRequest) {
         const iat = Math.floor(Date.now() / 1000); // Issued at
         const exp = iat + 60 * 60; // Expiration time (1 hour)
 
-        const token = await new SignJWT({ username: d.username, role: user.role })
+        const token = await new SignJWT({ uid: user.id, role: user.role })
             .setProtectedHeader({ alg: 'HS256' })
             .setIssuedAt(iat)
             .setExpirationTime(exp)
             .sign(new TextEncoder().encode(SECRET_KEY));
-        // Generate JWT token
-        // const token = jwt.sign(
-        //     {
-        //         username: d.username, // Or user.username if username exists
-        //         role: user.role,
-        //     },
-        //     SECRET_KEY,
-        //     { expiresIn: '1h' }
-        // );
 
         // Send the token as the response
         return NextResponse.json({ token }, { status: 200 });

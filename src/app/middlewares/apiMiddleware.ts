@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { decodeProtectedHeader, jwtVerify } from 'jose';
 interface JwtPayload {
   role: string;
-  
+
 }
 interface CustomJwtPayload extends JwtPayload {
   role: string;
@@ -26,8 +26,10 @@ export async function middleware(req: NextRequest) {
       algorithms: ['HS256'],
     });
     const role = payload.role as string
+    const userid = payload.uid as string
     const response = NextResponse.next();
     response.headers.set('user-custom-role', role);
+    response.headers.set('user-custom-id', userid);
     return response;
   } catch (error) {
     console.log('err ', error);
