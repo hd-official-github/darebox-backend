@@ -81,7 +81,7 @@ model NoticeBoard {
   id     Int             @id @default(autoincrement())
   plan   NoticeBoardPlan
   type   NoticeBoardType
-  rank   Int
+  rank   String
   name   String
   points String
 }

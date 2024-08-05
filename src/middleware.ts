@@ -4,7 +4,8 @@ export const config = {
   matcher: ['/api/v1/getcreativity',
     '/api/v1/getopportunity',
     '/api/v1/getproductivity',
-    '/api/v1/getUserInfo'
+    '/api/v1/getUserInfo',
+    '/api/v1/getnoticeboard'
   
   ],
 };
