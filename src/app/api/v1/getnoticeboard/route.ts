@@ -2,14 +2,15 @@ import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { JWTPayload } from 'jose';
 import { z } from 'zod';
+import { getReqHeaders } from '@/utils/getReqheaders';
 const planSchema = z.enum(['FOUNDATION', 'TOP', 'PRO']);
 const typeSchema = z.enum(['DAILY', 'WEEKLY', 'MONTHLY']);
 const prisma = new PrismaClient();
 const zodShema = z.object({
-    plan: planSchema,
     type: typeSchema,
 });
 export async function POST(req: NextRequest) {
+    const { role, uid } = getReqHeaders(req.headers)
     const data = await req.json()
     const parsedData = zodShema.safeParse(data)
     if (!parsedData.success) {
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
             where: {
                 AND: {
                     type: d.type,
-                    plan: d.plan
+                    plan: role
                 }
             }
         })

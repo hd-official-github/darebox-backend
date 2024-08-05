@@ -85,3 +85,18 @@ model NoticeBoard {
   name   String
   points String
 }
+
+model News{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  imgurl String
+}
+
+model LifeSkills{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  price String
+  url String
+}

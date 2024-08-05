@@ -31,3 +31,12 @@ export async function getProductivity() {
   // await prisma.$disconnect()
   return prodata
 }
+
+export async function getnews() {
+  const newsdata = await prisma.news.findMany()
+  return newsdata
+}
+export async function getlifeskills() {
+  const lifedata = await prisma.lifeSkills.findMany()
+  return lifedata
+}
