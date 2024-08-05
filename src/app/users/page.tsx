@@ -1,10 +1,12 @@
 import Navbar from '@/components/Navbar'
 import { PrismaClient } from '@prisma/client'
+import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import React from 'react'
 const prisma = new PrismaClient()
 async function getUsers() {
   const users = await prisma.user.findMany()
+  revalidatePath('/users')
   return users
 }
 export default async function Users() {

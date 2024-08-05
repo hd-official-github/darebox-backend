@@ -64,3 +64,24 @@ model Productivity {
   userId    String   @unique
   user      User     @relation(fields: [userId], references: [id])
 }
+
+enum NoticeBoardPlan {
+  FOUNDATION
+  TOP
+  PRO
+}
+
+enum NoticeBoardType {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+model NoticeBoard {
+  id     Int             @id @default(autoincrement())
+  plan   NoticeBoardPlan
+  type   NoticeBoardType
+  rank   Int
+  name   String
+  points String
+}
