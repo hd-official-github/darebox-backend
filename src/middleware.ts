@@ -11,5 +11,6 @@ export const config = {
     '/api/v1/getspokenenglish',
     '/api/v1/getinterviewtraining',
     '/api/v1/getworkshop',
+    '/api/v1/getshopitems',
   ],
 };

@@ -53,3 +53,7 @@ export async function getworkshop() {
   const workShop = await prisma.workShop.findMany()
   return workShop
 }
+export async function getshopitems() {
+  const workShop = await prisma.shop.findMany()
+  return workShop
+}
