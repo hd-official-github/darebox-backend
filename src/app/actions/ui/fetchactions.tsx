@@ -40,3 +40,8 @@ export async function getlifeskills() {
   const lifedata = await prisma.lifeSkills.findMany()
   return lifedata
 }
+
+export async function getspokenenglish() {
+  const spokenenglish = await prisma.spokenenglish.findMany()
+  return spokenenglish
+}

@@ -47,14 +47,14 @@ model Creativity {
   rating      String
   review      String
   price       String
-  description String
+  description String @db.Text
   url         String
 }
 
 model Opportunity {
   id          Int    @id @default(autoincrement())
   title       String
-  description String
+  description String @db.Text
 }
 
 model Productivity {
@@ -89,14 +89,24 @@ model NoticeBoard {
 model News{
   id Int @id @default(autoincrement())
   title String
-  description String
+  description String @db.Text
   imgurl String
 }
 
 model LifeSkills{
   id Int @id @default(autoincrement())
   title String
-  description String
+  description String @db.Text
   price String
   url String
+}
+model SpokenEnglish{
+  id          Int    @id @default(autoincrement())
+  name        String
+  author      String
+  rating      String
+  review      String
+  price       String
+  description String
+  url         String
 }
