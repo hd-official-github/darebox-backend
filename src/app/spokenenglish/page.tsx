@@ -25,7 +25,7 @@ export default async function SpokenEnglish() {
         <div>Action</div>
       </div>
       {
-        spokeneng.length > 0 && spokeneng.map(item => (
+        spokeneng.length > 0 && spokeneng.map((item) => (
           <div key={item.id} className='grid grid-cols-9 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
             <p>{item.id}</p>
             <p>{item.name}</p>

@@ -8,6 +8,8 @@ export const config = {
     '/api/v1/getnoticeboard',
     '/api/v1/getnews',
     '/api/v1/getlifeskills',
-  
+    '/api/v1/getspokenenglish',
+    '/api/v1/getinterviewtraining',
+    '/api/v1/getworkshop',
   ],
 };

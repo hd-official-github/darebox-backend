@@ -1,10 +1,12 @@
 "use client"
 import { AddCreativityAction } from '@/app/actions/AddCreativityAction';
+import { AddSpokenEnglishAction } from '@/app/actions/AddSpokenEnglish';
+import { AddWorkshopAction } from '@/app/actions/AddWorkshop';
 import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/navigation';
 import React, {  useState } from 'react'
 
-export default function CreaAdd() {
+export default function AddInterview() {
     const [error, setError] = useState<{ msg: string | undefined } | null>(null);
 
     const router = useRouter()
@@ -22,17 +24,17 @@ export default function CreaAdd() {
             return
         }
 
-        const response = await AddCreativityAction(data)
+        const response = await AddWorkshopAction(data)
         if (!response.success) {
             setError({ msg: response.msg })
             return
         }
         else router.replace(response.redirectUrl)
     }
-    return (
+    return (    
         <Navbar>
             <div className='font-black text-md p-4'>
-                <h3>Add Creativity</h3>
+                <h3>Add Workshop</h3>
             </div>
             <form action={handleSubmit} className='flex flex-col gap-y-4 max-w-[50%] m-4 font-bold'>
                 <div className='flex flex-col'>

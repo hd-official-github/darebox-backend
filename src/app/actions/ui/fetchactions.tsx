@@ -42,6 +42,14 @@ export async function getlifeskills() {
 }
 
 export async function getspokenenglish() {
-  const spokenenglish = await prisma.spokenenglish.findMany()
+  const spokenenglish = await prisma.spokenEnglish.findMany()
   return spokenenglish
+}
+export async function getinterviewtraining() {
+  const interviewTraining = await prisma.interviewTraining.findMany()
+  return interviewTraining
+}
+export async function getworkshop() {
+  const workShop = await prisma.workShop.findMany()
+  return workShop
 }
