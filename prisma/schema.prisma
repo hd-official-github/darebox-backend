@@ -112,9 +112,9 @@ model Shop {
   name        String
   price       String
   description String @db.Text
+  plan        Role
   imgurl      String @db.Text
   producturl  String @db.Text
-  plan        Role
 }
 
 enum Role {

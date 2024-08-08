@@ -6,9 +6,9 @@ import { getReqHeaders } from '@/utils/getReqheaders';
 const planSchema = z.enum(['FOUNDATION', 'TOP', 'PRO']);
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
     const { role, uid } = getReqHeaders(req.headers)
-    const data = await req.json()
+    // const data = await req.json()
     // console.log('print role ', req.headers.get('user-custom-role'))
 
     try {
