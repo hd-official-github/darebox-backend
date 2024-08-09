@@ -26,6 +26,8 @@ model User {
   city               String
   refercode          String?
   productivityPoints Productivity?
+  order              Order[]
+  Wallet             Wallet?
 }
 
 model Creativity {
@@ -115,6 +117,22 @@ model Shop {
   plan        Role
   imgurl      String @db.Text
   producturl  String @db.Text
+}
+
+model Order {
+  id          Int    @id @default(autoincrement())
+  productname String
+  price       String
+  date        String
+  userId      String
+  User        User   @relation(fields: [userId], references: [id])
+}
+
+model Wallet {
+  id     Int    @id @default(autoincrement())
+  amount String
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 enum Role {

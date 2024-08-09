@@ -57,3 +57,28 @@ export async function getshopitems() {
   const workShop = await prisma.shop.findMany()
   return workShop
 }
+export async function getorders() {
+  const order = await prisma.order.findMany({
+    include: {
+      User: {
+        select: {
+          fullname: true,
+        },
+      },
+    },
+  });
+  return order
+}
+export async function getwallet() {
+  const order = await prisma.wallet.findMany({
+    include: {
+      user: {
+        select: {
+          fullname: true,
+          role: true
+        }
+      }
+    },
+  });
+  return order
+}

@@ -11,6 +11,8 @@ export async function AddNewsAction(data: FormData): Promise<CreaResponse> {
     const formDataEntries = Object.fromEntries(data);
     const parsedData = NewsSchema.safeParse(formDataEntries);
     if (!parsedData.success) {
+        console.log('err ',parsedData.error);
+        
         return { success: false, msg: "Error Occured with form!", redirectUrl: "/news" }
     }
     const prisma = new PrismaClient();
