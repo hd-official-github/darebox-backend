@@ -14,5 +14,7 @@ export const config = {
     '/api/v1/getshopitems',
     '/api/v1/getorders',
     '/api/v1/getwallet',
+    '/api/v1/changepassword',
+    '/api/v1/deletemyaccount',
   ],
 };
