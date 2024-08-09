@@ -13,5 +13,6 @@ export const config = {
     '/api/v1/getworkshop',
     '/api/v1/getshopitems',
     '/api/v1/getorders',
+    '/api/v1/getwallet',
   ],
 };
