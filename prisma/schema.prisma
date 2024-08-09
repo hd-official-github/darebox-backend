@@ -52,7 +52,7 @@ model Productivity {
   points    Int
   createdAt DateTime @default(now())
   userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model NoticeBoard {
@@ -125,14 +125,14 @@ model Order {
   price       String
   date        String
   userId      String
-  User        User   @relation(fields: [userId], references: [id])
+  User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Wallet {
   id     Int    @id @default(autoincrement())
   amount String
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Role {

@@ -17,6 +17,8 @@ export async function GET(req: NextRequest) {
         });
         return NextResponse.json({ success: true, delacc }, { status: 200 });
     } catch (error) {
+        console.log('err ',error);
+        
         return NextResponse.json({ msg: 'Failed to delete your account' }, { status: 500 });
     }
 }
