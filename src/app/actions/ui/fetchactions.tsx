@@ -82,3 +82,54 @@ export async function getwallet() {
   });
   return order
 }
+export async function getquizmodel() {
+  const quizmodel = await prisma.quizModel.findMany()
+  return quizmodel
+}
+export async function getquesandchoicecount(id: string) {
+  const quesandchoicecount = await prisma.quizQuestion.findMany({
+    where: {
+      quizModelId: Number(id),
+    },
+    select: {
+      id: true,
+      question: true,
+      _count: {
+        select: { Choice: true }, // Count the number of choices
+      },
+      quizmodel: {
+        select: {
+          plan: true,
+          quiztype: true
+        }
+      }
+    }
+  })
+  // console.log("QS ", quesandchoicecount);
+
+  return quesandchoicecount
+}
+export async function getchoices(id: string) {
+  const choices = await prisma.choice.findMany({
+    where: {
+      quizQuestionId: Number(id)
+    }
+  })
+  // console.log('chs ', choices);
+  return choices
+
+}
+export async function getquizresults() {
+  const qres = await prisma.quizResult.findMany({
+    include: {
+      user: {
+        select: {
+          fullname: true
+        }
+      }
+    }
+  })
+  // console.log('chs ', choices);
+  return qres
+
+}

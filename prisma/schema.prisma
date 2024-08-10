@@ -28,6 +28,7 @@ model User {
   productivityPoints Productivity?
   order              Order[]
   Wallet             Wallet?
+  QuizResult         QuizResult[]
 }
 
 model Creativity {
@@ -133,6 +134,39 @@ model Wallet {
   amount String
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model QuizModel {
+  id           Int             @id @default(autoincrement())
+  plan         NoticeBoardPlan
+  quiztype     NoticeBoardType
+  isactive     Boolean
+  QuizQuestion QuizQuestion[]
+}
+
+model QuizQuestion {
+  id          Int       @id @default(autoincrement())
+  quizModelId Int
+  quizmodel   QuizModel @relation(fields: [quizModelId], references: [id], onDelete: Cascade)
+  question    String    @db.Text
+  Choice      Choice[]
+}
+
+model Choice {
+  id             Int          @id @default(autoincrement())
+  choice         String
+  iscorrect      Boolean
+  quizQuestionId Int
+  quizQuestion   QuizQuestion @relation(fields: [quizQuestionId], references: [id], onDelete: Cascade)
+}
+
+model QuizResult {
+  id     Int             @id @default(autoincrement())
+  userId String
+  user   User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  score  String
+  plan   NoticeBoardPlan
+  type   NoticeBoardType
 }
 
 enum Role {

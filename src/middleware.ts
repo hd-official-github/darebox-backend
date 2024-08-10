@@ -16,5 +16,8 @@ export const config = {
     '/api/v1/getwallet',
     '/api/v1/changepassword',
     '/api/v1/deletemyaccount',
+    '/api/v1/getquizdata',
+    '/api/v1/createquizresult',
+    '/api/v1/updatequizresult',
   ],
 };
