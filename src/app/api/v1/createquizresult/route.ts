@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
             })
             return NextResponse.json({ success: true, res }, { status: 200 });
         } else {
-            return NextResponse.json({ msg: 'You have already taken the test' }, { status: 500 })
+            return NextResponse.json({ success: false, msg: 'You have already taken the test' }, { status: 200 })
         }
 
     } catch (error) {
