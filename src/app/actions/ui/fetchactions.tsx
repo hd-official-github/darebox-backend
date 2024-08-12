@@ -133,3 +133,18 @@ export async function getquizresults() {
   return qres
 
 }
+export async function getquizmodeldata(id: string) {
+  const qmodel = await prisma.quizModel.findFirst({
+    where: {
+      id: Number(id)
+    },
+    select: {
+      questionCount: true,
+      timingInfo: true
+    }
+  })
+  // console.log('chs ', choices);
+  // console.log('qm ', qmodel);
+  return qmodel
+
+}

@@ -20,7 +20,9 @@ export async function AddOrdersAction(data: INPType): Promise<CreaResponse> {
                 userId: d.userid,
                 productname: d.productname,
                 price: d.price,
-                date: d.date
+                date: d.date,
+                productUrl: d.productUrl,
+                description: d.description
             },
         });
         revalidatePath('/orders')

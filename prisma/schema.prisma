@@ -127,6 +127,8 @@ model Order {
   date        String
   userId      String
   User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productUrl  String @default("") @db.Text
+  description String @default("") @db.Text
 }
 
 model Wallet {
@@ -137,11 +139,13 @@ model Wallet {
 }
 
 model QuizModel {
-  id           Int             @id @default(autoincrement())
-  plan         NoticeBoardPlan
-  quiztype     NoticeBoardType
-  isactive     Boolean
-  QuizQuestion QuizQuestion[]
+  id            Int             @id @default(autoincrement())
+  plan          NoticeBoardPlan
+  quiztype      NoticeBoardType
+  isactive      Boolean
+  questionCount String?
+  timingInfo    String?
+  QuizQuestion  QuizQuestion[]
 }
 
 model QuizQuestion {

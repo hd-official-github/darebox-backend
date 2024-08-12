@@ -22,15 +22,17 @@ export default function OrdersApp() {
         const productname = data.get('productname') as string
         const price = data.get('price') as string
         const date = data.get('date') as string
+        const description = data.get('description') as string
+        const productUrl = data.get('productUrl') as string
         // console.log(userid, productname, price, date); return
-        if (!userid || !productname || !price || !date) {
+        if (!userid || !productname || !price || !date || !description || !productUrl) {
             seterror({ msg: "Please fill the entire form" })
             return
         }
         // const data = new FormData()
         setisloading(true)
         // console.log(userid, productname, price, date); return
-        const response = await AddOrdersAction({ userid, productname, price, date })
+        const response = await AddOrdersAction({ userid, productname, price, date, description, productUrl })
         setisloading(false)
         if (!response.success) {
             seterror({ msg: response.msg })
@@ -81,6 +83,14 @@ export default function OrdersApp() {
                 <div className='flex flex-col'>
                     <label>Date ordered</label>
                     <input type='text' placeholder='Eg. 24th July 2024' className='p-2 border border-primary' name='date' required />
+                </div>
+                <div className='flex flex-col'>
+                    <label>Product URL</label>
+                    <input type='text' placeholder='Eg. Classroom Link' className='p-2 border border-primary' name='productUrl' required />
+                </div>
+                <div className='flex flex-col'>
+                    <label>Description</label>
+                    <input type='text' placeholder='Any Remarks or Specifications' className='p-2 border border-primary' name='description' required />
                 </div>
                 {error && <span className='text-red-500'>{error.msg}</span>}
                 {

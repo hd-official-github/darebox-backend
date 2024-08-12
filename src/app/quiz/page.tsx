@@ -17,25 +17,30 @@ export default async function Quiz() {
         </div>
 
       </div>
-      <div className='grid grid-cols-5 m-4 p-4 font-bold text-sm'>
+      <div className='grid grid-cols-6 m-4 p-4 font-bold text-sm'>
         <div>ID</div>
         <div>Plan</div>
         <div>QuizType</div>
-        <div>Is Active</div>
+        <div>Q.(count)</div>
+        <div>Timing</div>
+        {/* <div>Is Active</div> */}
         <div>Action</div>
       </div>
       {
         quizmodel && quizmodel.map(item => {
-          return <div key={item.id} className='grid grid-cols-5 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
+          return <div key={item.id} className='grid grid-cols-6 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
             <p>{item.id}</p>
             <p>{item.plan}</p>
             <p>{item.quiztype}</p>
-            <p>{item.isactive ? 'TRUE' : 'FALSE'}</p>
-            <div className='flex flex-row gap-4'>
-              <Link href={`/quiz/questions/${item.id}`} className='flex items-center justify-start text-sm bg-gray-200 border p-2 rounded-md'>
+            <p>{item.questionCount}</p>
+            <p>{item.timingInfo}</p>
+            {/* <p>{item.isactive ? 'TRUE' : 'FALSE'}</p> */}
+            <div className='grid grid-cols-1 gap-4'>
+              <Link href={`/quiz/questions/${item.id}`} className='bg-gray-300 text-gray-900 text-center font-bold p-2 rounded-md'>
                 View Questions
               </Link>
               <ActivateComponent isactive={item.isactive} id={item.id} />
+              <Link href={`/quiz/editquiz/${item.id}`} className='bg-primary text-white font-bold p-2 rounded-md text-center'>EDIT INFO</Link>
             </div>
 
           </div>
