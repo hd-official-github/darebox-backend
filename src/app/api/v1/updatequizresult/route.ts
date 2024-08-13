@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getReqHeaders } from '@/utils/getReqheaders';
 import { z } from 'zod';
+import { revalidatePath } from 'next/cache';
 const typeSchema = z.enum(['DAILY', 'WEEKLY', 'MONTHLY']);
 const prisma = new PrismaClient();
 const zodShema = z.object({
@@ -33,6 +34,7 @@ export async function POST(req: NextRequest) {
                     score: d.score
                 }
             })
+            revalidatePath('quiz/quizresults')
             return NextResponse.json({ success: true }, { status: 200 });
         } else {
             return NextResponse.json({ msg: 'You have not taken the test' }, { status: 500 })

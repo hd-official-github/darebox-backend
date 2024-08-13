@@ -109,7 +109,7 @@ export default function SplitComponent({ type }: PropType) {
                                 <h4 className='font-bold text-xs'>ACTION</h4>
                             </div>
                             {
-                                nbitems.filter(item => item.type == 'MONTHLY').length > 0 ? nbitems.filter(item => item.type == 'MONThLY').map(item => {
+                                nbitems.filter(item => item.type == 'MONTHLY').length > 0 ? nbitems.filter(item => item.type == 'MONTHLY').map(item => {
                                     return <div className='grid grid-cols-4 mb-4' key={item.id}>
                                         <h4 className='font-bold text-xs'>{item.rank}</h4>
                                         <h4 className='font-bold text-xs'>{item.name}</h4>
