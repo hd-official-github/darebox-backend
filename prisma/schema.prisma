@@ -173,6 +173,11 @@ model QuizResult {
   type   NoticeBoardType
 }
 
+model Ads {
+  id       Int    @id @default(autoincrement())
+  imageurl String @db.Text
+}
+
 enum Role {
   FOUNDATION
   TOP

@@ -14,13 +14,15 @@ export default function DeleteComponent(data: Props) {
     const handleClick = async () => {
         setisclicked(true)
         const delres = await DeleteItemAction(data)
+        console.log(delres)
         if (!delres.success) {
             alert(delres.msg)
+            // router.refresh()
             setisclicked(false)
             return
         } else {
             // setisclicked(false)
-            router.refresh()
+            window.location.reload()
         }
     }
     return (isclicked ? <p className='font-bold'>WAIT...</p> :

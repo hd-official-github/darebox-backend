@@ -32,6 +32,7 @@ export default function Navbar({ children }: NavbarProps) {
                     <Link href={'/interviewtraining'}>Interview Training</Link>
                     <Link href={'/workshop'}>Workshop</Link>
                     <Link href={'/shop'}>Shop</Link>
+                    <Link href={'/ads'}>ADS</Link>
                 </div>
                 <div className='col-span-7 bg-gray-100 h-[90vh] overflow-y-scroll overflow-x-hidden '>
                     {children}

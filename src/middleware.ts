@@ -20,5 +20,6 @@ export const config = {
     '/api/v1/createquizresult',
     '/api/v1/updatequizresult',
     '/api/v1/getquizinfo',
+    '/api/v1/getads',
   ],
 };

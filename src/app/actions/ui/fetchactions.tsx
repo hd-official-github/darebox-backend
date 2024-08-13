@@ -148,3 +148,8 @@ export async function getquizmodeldata(id: string) {
   return qmodel
 
 }
+
+
+export async function getads() {
+  return prisma.ads.findMany({})
+}

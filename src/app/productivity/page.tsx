@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { getProductivity } from '../actions/ui/fetchactions'
 import { Add10Productivity } from '../actions/Add10Productivity'
 import { useRouter } from 'next/navigation'
+import DeleteComponent from '../quiz/components/deleteComponent'
 
 type ProdType = {
   user: {
@@ -30,7 +31,7 @@ export default function Productivity() {
         const add10 = await Add10Productivity(userid);
         if (add10.success) {
           window.location.reload()
-        }else{
+        } else {
           alert(add10.msg)
         }
         setisloading(false)
@@ -54,21 +55,25 @@ export default function Productivity() {
         <Link href={'/productivity/add'} className='text-white p-2 text-sm rounded-md bg-primary'>+ New Productivity</Link>
       </div>
 
-      <div className='grid grid-cols-4 m-4 p-4 font-bold text-sm'>
+      <div className='grid grid-cols-5 m-4 p-4 font-bold text-sm'>
         <div>ID</div>
         <div>User</div>
         <div>Points</div>
+        <div>ADD</div>
         <div>Action</div>
       </div>
       {
         loading ? <h4 className='font-black p-2'>LOADING....</h4> : prodata && prodata.length > 0 ? prodata.map(item => {
-          return <div key={item.id} className='grid grid-cols-4 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
+          return <div key={item.id} className='grid grid-cols-5 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
             <p>{item.id}</p>
             <p>{item.user.fullname}({item.user.role})</p>
             <p>{item.points}</p>
             <button onClick={() => handleAdd10(item.userId)} className='flex bg-primary p-2 text-white rounded-md justify-center items-center w-[140px]'>
               ADD 10 POINTS
             </button>
+            <div>
+              <DeleteComponent id={item.id} redirecturl={`/productivity`} model='productivity' />
+            </div>
           </div>
         }) : <h4 className='font-black p-2'>NO DATA PRESENT</h4>
       }
