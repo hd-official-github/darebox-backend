@@ -21,6 +21,7 @@ export default function ActivateComponent({ isactive, id }: Props) {
             setisloading(false)
             router.replace(activateQuiz.redirectUrl)
         } else {
+            alert('activate quiz error')
             alert(activateQuiz.msg)
             setisloading(false)
         }
@@ -37,6 +38,7 @@ export default function ActivateComponent({ isactive, id }: Props) {
             setisloading(false)
             router.replace(activateQuiz.redirectUrl)
         } else {
+            alert('deactive quiz error')
             alert(activateQuiz.msg)
             setisloading(false)
         }
