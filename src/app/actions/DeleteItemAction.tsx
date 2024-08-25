@@ -34,6 +34,7 @@ export async function DeleteItemAction(data: Props): Promise<CreaResponse> {
                     id: Number(data.id)
                 }
             })
+            revalidatePath('/quiz/quizresults')
         }
         if (data.model == "creativity") {
             await prisma.creativity.delete({
