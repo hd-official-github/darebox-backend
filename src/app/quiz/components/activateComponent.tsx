@@ -19,7 +19,8 @@ export default function ActivateComponent({ isactive, id }: Props) {
         const activateQuiz = await ActivateQuizModel(id)
         if (activateQuiz.success) {
             setisloading(false)
-            router.replace(activateQuiz.redirectUrl)
+            window.location.reload()
+            // router.replace(activateQuiz.redirectUrl)
         } else {
             alert('activate quiz error')
             alert(activateQuiz.msg)
@@ -36,7 +37,8 @@ export default function ActivateComponent({ isactive, id }: Props) {
         const activateQuiz = await DeActivateQuizModel(id)
         if (activateQuiz.success) {
             setisloading(false)
-            router.replace(activateQuiz.redirectUrl)
+            window.location.reload()
+            // router.replace(activateQuiz.redirectUrl)
         } else {
             alert('deactive quiz error')
             alert(activateQuiz.msg)
