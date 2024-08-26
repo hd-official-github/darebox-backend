@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
                     score: d.score
                 }
             })
-            revalidatePath('quiz/quizresults')
+            revalidatePath('/quiz/quizresults')
             return NextResponse.json({ success: true }, { status: 200 });
         } else {
             revalidatePath('/quiz/quizresults')
