@@ -41,10 +41,12 @@ export async function POST(req: NextRequest) {
             revalidatePath('/quiz/quizresults')
             return NextResponse.json({ success: true, res }, { status: 200 });
         } else {
+            revalidatePath('/quiz/quizresults')
             return NextResponse.json({ success: false, msg: 'You have already taken the test' }, { status: 200 })
         }
 
     } catch (error) {
+        revalidatePath('/quiz/quizresults')
         return NextResponse.json({ msg: 'Failed to fetch quiz records' }, { status: 500 });
     }
 }

@@ -21,7 +21,7 @@ export default function DeleteComponent(data: Props) {
             setisclicked(false)
             return
         } else {
-            // setisclicked(false)
+            setisclicked(false)
             window.location.reload()
         }
     }
