@@ -1,6 +1,7 @@
 "use server"
 
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 const prisma = new PrismaClient()
 export async function getcreativits() {
   const creas = await prisma.creativity.findMany();
@@ -129,6 +130,7 @@ export async function getquizresults() {
       }
     }
   })
+  revalidatePath('/quiz/quizresults')
   // console.log('chs ', choices);
   return qres
 
