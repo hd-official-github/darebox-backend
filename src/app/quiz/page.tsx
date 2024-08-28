@@ -1,11 +1,31 @@
+"use client";
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { getquizmodel } from '../actions/ui/fetchactions'
 import ActivateComponent from './components/activateComponent'
+type Qzprops = {
+  id: number,
+  plan: string,
+  quiztype: string,
+  isactive: boolean,
+  questionCount: string | null,
+  timingInfo: string | null
+}
+export default function Quiz() {
 
-export default async function Quiz() {
-  const quizmodel = await getquizmodel()
+  const [qzmodel, setqzmodel] = useState<Qzprops[]>([])
+  const [loading, setloading] = useState(false)
+  async function fetchqzmodel() {
+    setloading(true)
+    const quizmodel = await getquizmodel()
+    setqzmodel(quizmodel)
+    setloading(false)
+  }
+  useEffect(() => {
+    fetchqzmodel()
+  }, [])
+
 
   return (
     <Navbar>
@@ -26,8 +46,9 @@ export default async function Quiz() {
         {/* <div>Is Active</div> */}
         <div>Action</div>
       </div>
+
       {
-        quizmodel && quizmodel.map(item => {
+        loading ? <p>Loading...</p> : qzmodel && qzmodel.map(item => {
           return <div key={item.id} className='grid grid-cols-6 p-4 m-2 font-medium text-sm overflow-hidden break-words bg-white shadow-md'>
             <p>{item.id}</p>
             <p>{item.plan}</p>
